@@ -68,9 +68,10 @@
                         <span>Choose Type Project</span>
 
                         <label for="type_id" class="form-label">Type</label>
-                        <select class="form-select form-select 
-@error('type_id') is-invalid @enderror" name="type_id"
-                            id="type_id">
+                        <select
+                            class="form-select form-select 
+                            @error('type_id') is-invalid @enderror"
+                            name="type_id" id="type_id">
                             <option selected>Select a Type</option>
                             <option value="">Uncategorized</option>
                             @foreach ($types as $type)

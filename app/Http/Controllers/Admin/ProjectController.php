@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Technology;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\Type;
+
 
 class ProjectController extends Controller
 {
@@ -28,8 +30,10 @@ class ProjectController extends Controller
     public function create()
     {
         $page_title = 'Add New';
+        $project = Project::all();
         $types = Type::all();
-        return view('admin.projects.create', compact('page_title', 'types'));
+        $tecnologies = Technology::all();
+        return view('admin.projects.create', compact('page_title', 'types', 'tecnologies', 'project'));
     }
 
     /**
@@ -51,7 +55,9 @@ class ProjectController extends Controller
 
         //dd($val_data);
         //dd(Project::create($val_data));
-        Project::create($val_data);
+        $newProject = Project::create($val_data);
+        $newProject->technologies()->attach($request->technologies);
+        // Project::create($val_data);
 
         return to_route('admin.projects.index')->with('message', 'new project added');
     }
@@ -73,7 +79,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('types', 'project'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('types', 'project', 'technologies'));
     }
 
     /**
@@ -83,7 +90,14 @@ class ProjectController extends Controller
     {
         $data = $request->all();
         $project->update($data);
-        return to_route('admin.projects.index', $project); // RIDIRIGE ALLA VISTA DEL DETTAGLIO DELL'ELEMENTO APPENA MODIFICATO
+        return to_route('admin.projects.index', $project);
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($request->technologies); // (o valData['technologies'])
+        }
+
+        // AGGIORNA L'ENTITA' CON I VALORI DI $valData
+
+        // RIDIRIGE ALLA VISTA DEL DETTAGLIO DELL'ELEMENTO APPENA MODIFICATO
     }
 
     /**
@@ -96,7 +110,9 @@ class ProjectController extends Controller
         }
 
         // ELIMINA IL RECORD DAL DATABASE
+        $project->technologies()->detach();
         $project->delete();
+
 
         return to_route('admin.projects.index')->with('message', 'post deleted success!');
     }

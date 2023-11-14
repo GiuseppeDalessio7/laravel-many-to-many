@@ -26,6 +26,9 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/', [DashBoardController::class, 'index'])->name('dashboard');
 
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
+
+    // TECHNOLOGIES RESOURCE CONTROLLER ROUTES
+    Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technology:slug']);
     /* all ruote start (admin.dashboard) or other */
 });
 

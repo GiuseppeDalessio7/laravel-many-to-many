@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProjectRequest extends FormRequest
+class UpdateTechnologyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,11 +22,8 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'min:5', 'max:50'],
-            'description' => ['nullable'],
-            'cover_image' => ['nullable', 'image', 'max:1000', 'mimes:png,jpg'],
-            'type_id' => ['nullable', 'exists:types,id'],
-            'technologies' => 'nullable|exists:technologies,id',
+            // IL NOME E' RICHIESTO, HA UNA LUNGHEZZA 3/50 E DEVE ESSERE UNICO ALL'INTERNO DEL CAMPO name NELLA TABELLA technologies
+            'name' => 'required|bail|min:3|max:50|unique:technologies,name'
         ];
     }
 }

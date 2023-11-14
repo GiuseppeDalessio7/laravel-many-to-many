@@ -10,6 +10,15 @@
                         <p>{{ $project->description }}</p>
                         <p>{{ $project->id }}</p>
                         <p><strong>Type: </strong>{{ $project->type?->name }}</p>
+                        <ul class="d-flex gap-2 list-unstyled">
+                            @forelse ($project->technologies as $technology)
+                                <li class="badge bg-success">
+                                    <i class="fa-solid fa-code"></i> {{ $technology->name }}
+                                </li>
+                            @empty
+                                <li class="badge bg-secondary"><i class="fa-regular fa-file"></i> None/Others</li>
+                            @endforelse
+                        </ul>
                     </div>
                     <div class="col-6">
                         @if ($project->cover_image)
