@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('projects', function (Blueprint $table) {
-            // AGGIUNGE L'ID DI TYPE DOPO LA COLONNA ID
-            $table->unsignedBiginteger('type_id')->nullable()->after('id');
+        Schema::table(
+            'projects',
+            function (Blueprint $table) {
+                // AGGIUNGE L'ID DI TYPE DOPO LA COLONNA ID
+                $table->unsignedBiginteger('type_id')->nullable()->after('id');
 
-            $table->foreign('type_id') // asseggna la foreing key  ad type_id che è legata al TYPE che abbiamo creato
-                ->references('id') // si lega ad id
-                ->on('types'); // che si trova nella tabella types
-        });
+                $table->foreign('type_id') // asseggna la foreing key  ad type_id che è legata al TYPE che abbiamo creato
+                    ->references('id') // si lega ad id
+                    ->on('types'); // che si trova nella tabella types
+            }
+        );
     }
     /**
      * Reverse the migrations.

@@ -82,49 +82,43 @@
 
 
 
-
-
-
-                    <div class="mb-3">
-
-                        <label for="tecnologies" class="form-label"><strong>tecnologies Used</strong></label>
-
-                        {{-- // se non do l'array non prende le scelte multiple e prende solo l'ultima --}}
-                        <select class="form-select" multiple name="tecnologies[]" id="tecnologies">
-
-                            <option disabled>Select tecnologies used</option>
-
+                    <div class="my-3">
+                        <label for="technologies" class="form-label d-block"><strong>Technologies Used:</strong></label>
+                        <div class="card p-2 d-flex flex-row">
                             @foreach ($technologies as $technology)
-                                <option value="{{ $technology->id }}"
-                                    {{ in_array($technology->id, old('tecnologies', [])) ? 'selected' : '' }}>
-                                    {{ $technology->name }} ID: {{ $technology->id }}</option>
+                                <div class="form-check mx-1">
+
+
+                                    <input class="form-check-input @error('technologies') is-invalid @enderror"
+                                        type="checkbox" id="technologies" name="technologies[]"
+                                        aria-describedby="helpTechnology" value="{{ $technology->id }}"
+                                        {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="technologies">{{ $technology->name }}</label>
+
+                                </div>
                             @endforeach
-
-                        </select>
-
-                        @error('tecnologies')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-
-                    </div>
-
-
-
-                    <div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">description</label>
-                            <textarea class="form-control" @error('description') is-invalid @enderror name="description" id="description"
-                                rows="3"></textarea>
                         </div>
-                        @error('content')
-                            <span class="text-danger">
-                                {{ message }}
-                            </span>
-                        @enderror
-                    </div>
 
 
-                    <div class=" mt-5"><button type="submit" class="btn btn-primary">Save</button></div>
+
+
+
+                        <div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">description</label>
+                                <textarea class="form-control" @error('description') is-invalid @enderror name="description" id="description"
+                                    rows="3"></textarea>
+                            </div>
+                            @error('content')
+                                <span class="text-danger">
+                                    {{ message }}
+                                </span>
+                            @enderror
+                        </div>
+
+
+                        <div class=" mt-5"><button type="submit" class="btn btn-primary">Save</button></div>
 
 
             </form>

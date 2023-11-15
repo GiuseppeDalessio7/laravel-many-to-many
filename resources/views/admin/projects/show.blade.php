@@ -3,13 +3,15 @@
 @section('content')
     <div class="container mt-5">
         <div class="row align-items-md-stretch">
-            <div class="col-md-12 h-100 p-5 text-white bg-primary border rounded-3">
+            <div class="col-md-12 h-100 p-5 text-white bg-black border rounded-3">
                 <div class="row">
                     <div class="col-6">
                         <h2>{{ $project->title }}</h2>
                         <p>{{ $project->description }}</p>
                         <p>{{ $project->id }}</p>
-                        <p><strong>Type: </strong>{{ $project->type?->name }}</p>
+                        <p class="badge bg-danger"><strong>Type:
+                            </strong>{{ isset($project->type->name) ? $project->type->name : 'Uncategorized' }}
+                        </p>
                         <ul class="d-flex gap-2 list-unstyled">
                             @forelse ($project->technologies as $technology)
                                 <li class="badge bg-success">

@@ -89,7 +89,7 @@
                         <label for="cover_image" class="form-label">Choose file</label>
                         <input type="file" class="form-control" @error('cover_image') is-invalid @enderror
                             name="cover_image" id="cover_image" placeholder="choose a file" aria-describedby="fileHelp">
-                        <div id="fileHelp" class="form-text">add an image max 100kb</div>
+                        <div id="fileHelp" class="form-text">add an image max 1000kb</div>
                     </div>
                     @error('cover_image')
                         <span class="text-danger">
@@ -97,11 +97,46 @@
                         </span>
                     @enderror
 
+                    <div class="my-3">
+                        <label for="technologies" class="form-label d-block"><strong>Technologies Used:</strong></label>
+                        <div class="card p-2 d-flex flex-row">
+                            @foreach ($technologies as $technology)
+                                <div class="form-check mx-1">
+
+                                    {{-- VIENE DATO UN ARRAY COME NAME PER ACCETTARE SCELTE MULTIPLE --}}
+                                    @if ($errors->any())
+                                        <input class="form-check-input @error('technologies') is-invalid @enderror"
+                                            type="checkbox" id="technologies" name="technologies[]"
+                                            aria-describedby="helpTechnology" value="{{ $technology->id }}"
+                                            {{-- CONFRONTA L'ARRAY DEGLI ID DELLE TECHNOLOGIES CON QUELLO CONTENENTE I CAMPI SELEZIONATI PRECEDENTEMENTE
+                                    SE VI SONO CORRISPONDENZE LI PRESELEZIONA
+                                    SE L'ARRAY OLD NON ESISTE CONFRONTA UN ARRAY VUOTO [] COME FALLBACK, AUTOMATICAMENTE NON TROVANDO CORRISPONDENZE E NON SELEZIONANDO NULLA --}}
+                                            {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                                    @else
+                                        <input class="form-check-input @error('technologies') is-invalid @enderror"
+                                            type="checkbox" id="technologies" name="technologies[]"
+                                            aria-describedby="helpTechnology" value="{{ $technology->id }}"
+                                            {{-- SE $project->technologies CONTIENE LA TECHNOLOGY CICLATA LA SELEZIONA --}}
+                                            {{ $project->technologies->contains($technology) ? 'checked' : '' }}>
+                                    @endif
+                                    <label class="form-check-label" for="technologies">{{ $technology->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        @error('technologies')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+
+                    </div>
+
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" @error('description') is-invalid @enderror name="description" id="description"
                             rows="3">{{ old('description', $project->description) }}</textarea>
                     </div>
+
+
                     @error('description')
                         <span class="text-danger">
                             {{ message }}
