@@ -44,13 +44,13 @@
                     @enderror
 
                     <div class="mb-3">
-                        <label for="project_link" class="form-label">external link</label>
-                        <input type="text" name="project_link" id="project_link" class="form-control"
-                            @error('project_link') is-invalid @enderror placeholder="project_link"
-                            aria-describedby="helperproject_link" value="{{ old('project_link') }}">
-                        <small id="helperproject_link" class="text-muted">type your project external link</small>
+                        <label for="r_link" class="form-label">external link</label>
+                        <input type="text" name="r_link" id="r_link" class="form-control"
+                            @error('r_link') is-invalid @enderror placeholder="r_link" aria-describedby="helperr_link"
+                            value="{{ old('r_link') }}">
+                        <small id="helperr_link" class="text-muted">type your project external link</small>
                     </div>
-                    @error('project_link')
+                    @error('r_link')
                         <span class="text-danger">
                             {{ message }}
                         </span>

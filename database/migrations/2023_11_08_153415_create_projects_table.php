@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('slug');
             $table->text('description')->nullable();
             $table->string('github', 2048)->nullable();
-            $table->string('link', 2048)->nullable();
+            $table->string('r_link', 2048)->nullable();
             $table->timestamps();
         });
     }

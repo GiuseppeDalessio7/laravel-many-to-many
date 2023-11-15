@@ -28,7 +28,12 @@
                         @endif
                     </div>
                 </div>
+                <p><i class="fa-brands fa-github"></i> <a href="{{ $project->github }}"
+                        class="text-decoration-none text-black">{{ $project->github }}</a>
+                </p>
 
+                <p><i class="fa-solid fa-link"></i> <a href="{{ $project->r_link }}"
+                        class="text-decoration-none text-black">{{ $project->r_link }}</a></p>
             </div>
 
         </div>
