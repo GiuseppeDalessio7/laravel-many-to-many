@@ -75,30 +75,8 @@
                     </div>
 
 
-                    <label for="tecnologies" class="form-label"><strong>Technologies Used</strong></label>
-                    <select multiple class="form-select form-select" name="technologies[]" id="technologies">
-                        <option disabled>Select Technologies used</option>
-                        @foreach ($tecnologies as $technology)
-                            @if ($errors->any())
-                                // SE VI SONO ERRORI CONTROLLA SE L'ID DELLA TECHNOLOGY CICLATA E' CONTENUTO DENTRO
-                                old('tecnologies')
-                                // SE VI SONO CORRISPONDEZE LE PRESELEZIONA
-                                // SE L'ARRAY OLD NON ESISTE CONFRONTA UN ARRAY VUOTO [] COME FALLBACK, AUTOMATICAMENTE NON
-                                TROVANDO CORRISPONDENZE E NON SELEZIONANDO NULLA
-                                <option value="{{ $technology->id }}"
-                                    {{ in_array($technology->id, old('tecnologies', [])) ? 'selected' : '' }}>
-                                    {{ $technology->name }}
-                                </option>
-                            @else
-                                // SE $project->tecnologies CONTIENE LA TECHNOLOGY CICLATA LA SELEZIONA
-                                <option value="{{ $technology->id }}"
-                                    {{ $project->tecnologies->contains($technology) ? 'selected' : '' }}>
-                                    {{ $technology->name }}</option>
-                            @endif
-                        @endforeach
-                    </select>
 
-                    @error('tecnologies')
+                    @error('technologies')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
 
@@ -116,7 +94,7 @@
 
                             <option disabled>Select tecnologies used</option>
 
-                            @foreach ($tecnologies as $technology)
+                            @foreach ($technologies as $technology)
                                 <option value="{{ $technology->id }}"
                                     {{ in_array($technology->id, old('tecnologies', [])) ? 'selected' : '' }}>
                                     {{ $technology->name }} ID: {{ $technology->id }}</option>

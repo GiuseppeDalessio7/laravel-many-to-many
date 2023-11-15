@@ -32,8 +32,8 @@ class ProjectController extends Controller
         $page_title = 'Add New';
         $project = Project::all();
         $types = Type::all();
-        $tecnologies = Technology::all();
-        return view('admin.projects.create', compact('page_title', 'types', 'tecnologies', 'project'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('page_title', 'types', 'technologies', 'project'));
     }
 
     /**
@@ -67,8 +67,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        $types = Type::all();
-        return view('admin.projects.show', compact('project', 'types'));
+        // $types = Type::all();
+        return view('admin.projects.show', compact('project'));
 
         // return view('admin.projects.create', compact('types'));
     }
