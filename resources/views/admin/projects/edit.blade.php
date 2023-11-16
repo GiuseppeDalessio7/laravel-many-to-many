@@ -38,11 +38,11 @@
                 @enderror
 
                 <div class="mb-3">
-                    <label for="git_link" class="form-label">git link</label>
-                    <input type="text" name="git_link" id="git_link" class="form-control"
-                        @error('git_link') is-invalid @enderror placeholder="git_link" aria-describedby="helpergit_link"
-                        value="{{ old('git_link', $project->git_link) }}">
-                    <small id="helpergit_link" class="text-muted">type your git project link</small>
+                    <label for="github" class="form-label">git link</label>
+                    <input type="text" name="github" id="github" class="form-control"
+                        @error('github') is-invalid @enderror placeholder="github" aria-describedby="helpergithub"
+                        value="{{ old('github', $project->github) }}">
+                    <small id="helpergithub" class="text-muted">type your git project link</small>
                 </div>
                 @error('git_link')
                     <span class="text-danger">
@@ -108,9 +108,6 @@
                                         <input class="form-check-input @error('technologies') is-invalid @enderror"
                                             type="checkbox" id="technologies" name="technologies[]"
                                             aria-describedby="helpTechnology" value="{{ $technology->id }}"
-                                            {{-- CONFRONTA L'ARRAY DEGLI ID DELLE TECHNOLOGIES CON QUELLO CONTENENTE I CAMPI SELEZIONATI PRECEDENTEMENTE
-                                    SE VI SONO CORRISPONDENZE LI PRESELEZIONA
-                                    SE L'ARRAY OLD NON ESISTE CONFRONTA UN ARRAY VUOTO [] COME FALLBACK, AUTOMATICAMENTE NON TROVANDO CORRISPONDENZE E NON SELEZIONANDO NULLA --}}
                                             {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
                                     @else
                                         <input class="form-check-input @error('technologies') is-invalid @enderror"

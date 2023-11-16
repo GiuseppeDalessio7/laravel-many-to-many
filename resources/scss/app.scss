@@ -1,1 +1,11 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+@import './partials/admin_show.scss';
+
+.mybody {
+    background-image: url(https://img.freepik.com/premium-photo/mahogany-colored-wood-panel-background-texture-with-delicate-woodgrain-pattern_38187-1604.jpg);
+}
+
+
+.myscreen {
+    background-image: url(https://starwalk.space/gallery/images/what-is-space/1140x641.jpg);
+}

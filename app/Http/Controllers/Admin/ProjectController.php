@@ -94,10 +94,6 @@ class ProjectController extends Controller
         if ($request->has('technologies')) {
             $project->technologies()->sync($request->technologies); // (o valData['technologies'])
         }
-
-        // AGGIORNA L'ENTITA' CON I VALORI DI $valData
-
-        // RIDIRIGE ALLA VISTA DEL DETTAGLIO DELL'ELEMENTO APPENA MODIFICATO
     }
 
     /**

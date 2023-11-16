@@ -31,13 +31,13 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="git_link" class="form-label">git link</label>
-                        <input type="text" name="git_link" id="git_link" class="form-control"
-                            @error('git_link') is-invalid @enderror placeholder="git_link" aria-describedby="helpergit_link"
-                            value="{{ old('git_link') }}">
-                        <small id="helpergit_link" class="text-muted">type your git project link</small>
+                        <label for="github" class="form-label">git link</label>
+                        <input type="text" name="github" id="github" class="form-control"
+                            @error('github') is-invalid @enderror placeholder="github" aria-describedby="helpergithub"
+                            value="{{ old('github') }}">
+                        <small id="helpergithub" class="text-muted">type your valid git project link</small>
                     </div>
-                    @error('git_link')
+                    @error('github')
                         <span class="text-danger">
                             {{ message }}
                         </span>
@@ -48,7 +48,7 @@
                         <input type="text" name="r_link" id="r_link" class="form-control"
                             @error('r_link') is-invalid @enderror placeholder="r_link" aria-describedby="helperr_link"
                             value="{{ old('r_link') }}">
-                        <small id="helperr_link" class="text-muted">type your project external link</small>
+                        <small id="helperr_link" class="text-muted">type your valid project external link</small>
                     </div>
                     @error('r_link')
                         <span class="text-danger">
@@ -61,9 +61,10 @@
                         <span>Choose Type Project</span>
 
                         <label for="type_id" class="form-label">Type</label>
-                        <select class="form-select form-select 
-@error('type_id') is-invalid @enderror" name="type_id"
-                            id="type_id">
+                        <select
+                            class="form-select form-select 
+                            @error('type_id') is-invalid @enderror"
+                            name="type_id" id="type_id">
                             <option selected>Select a Type</option>
                             <option value="">Uncategorized</option>
                             @foreach ($types as $type)
