@@ -27,6 +27,8 @@ class StoreProjectRequest extends FormRequest
             'cover_image' => ['nullable', 'image', 'max:1000', 'mimes:png,jpg'],
             'type_id' => ['nullable', 'exists:types,id'],
             'technologies' => 'nullable|exists:technologies,id',
+            'github' => 'nullable|bail|min:3|max:2048|url:http,https',
+            'r_link' => 'nullable|bail|min:3|max:2048|url:http,https',
         ];
     }
 }
